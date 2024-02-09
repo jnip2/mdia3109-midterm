@@ -3,16 +3,17 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
 
 :root {
   --primary: #0090C1;
   --offwhite: #EEF8FF;
   --highlight: #f49f01;
-  --offblack: #211A1D
+  --offblack: #211A1D;
 }
 
 * {
-  font-family: 'Karla', sans-serif;
+  font-family: 'Comic Neue', sans-serif;
 }
 
 p,

@@ -103,18 +103,26 @@ export default function Home() {
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Dekko&display=swap" rel="stylesheet" />
       </Head>
       <main className={styles.main}>
         <div className={styles.inputContainer}>
           <div className={styles.logoContainer}>
-            <span>Weather the Chances?</span>
+            <Image src='/logo-full.png' height={100} width={300} alt="logo" />
           </div>
           <div className={styles.formContainer}>
             <div className={styles.gap}>
-              <span>Enter your location</span>
+              <span style={{ fontWeight: 'bold' }}>Enter a city</span>
               <form className={styles.form}>
-                <input onChange={(e) => setLocation(e.target.value)} id='location' type="text" placeholder="Type here..." className={styles.inputBar} />
+                <input
+                  onChange={(e) => setLocation(e.target.value)}
+                  onKeyDown={e => {
+                    if (e.key === 'Enter') e.preventDefault();
+                  }}
+                  id='location'
+                  type="text"
+                  placeholder="Type here..."
+                  className={styles.inputBar} />
                 <button
                   className={styles.button}
                   onClick={() => {
@@ -135,13 +143,13 @@ export default function Home() {
             {loading
               ? <>
                 <div className={styles.messageContainer}>
-                  <span>Loading...</span>
+                  <p className={styles.message}>Loading...</p>
                 </div>
               </>
               : error
                 ? <>
                   <div className={styles.messageContainer}>
-                    <span>Error! Location not found.</span>
+                    <p className={styles.message}>Error! Location not found.</p>
                   </div>
                 </>
                 : <>
@@ -153,6 +161,8 @@ export default function Home() {
                         weather={currentWeather.weather[0].main}
                         temp={(currentWeather.main.temp - 273.15).toFixed(1).toString()}
                         wind={currentWeather.wind.speed.toString()}
+                        country={locationData.country}
+                        state={locationData.state}
                       />
                     </div>}
                   {fiveDay.length > 0 && <h2 className={styles.fiveDayHeader}>Five Day Forecast</h2>

@@ -9,9 +9,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 100px;
+    gap: 20px;
     justify-content: center;
 }
+
+
 
 .formContainer {
     display: flex;
@@ -61,6 +63,7 @@
     width: 50px;
     padding: 2px;
     height: 100%;
+    font-weight: bold;
 }
 
 .button:hover {
@@ -79,6 +82,7 @@
     color: var(--offwhite);
     font-size: 24px;
     font-weight: 700;
+    font-family: 'Dekko', sans-serif;
 }
 
 .fiveDayContainer {
@@ -98,6 +102,10 @@
     align-items: center;
 }
 
+.message {
+    color: var(--offwhite);
+}
+
 @media screen and (max-width: 1225px) {
     .main {
         display: grid;
@@ -115,10 +123,18 @@
     .form {
         margin-bottom: 25px;
     }
+
+    .logoContainer {
+        margin-top: 10px;
+    }
 }
 
 @media screen and (max-width: 535px) {
     .weatherContainer {
         margin: 10px;
+    }
+
+    .logoContainer {
+        margin-top: 20px;
     }
 }

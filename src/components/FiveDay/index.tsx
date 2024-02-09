@@ -1,4 +1,6 @@
+import { useEffect, useState } from 'react'
 import styles from './FiveDay.module.css'
+import Image from 'next/image'
 
 export default function FiveDay({
     date = '',
@@ -7,17 +9,23 @@ export default function FiveDay({
     desc = '',
     wind = ''
 }) {
+    const [icon, setIcon] = useState('')
+
+    useEffect(() => {
+        setIcon(`/weather-icons/${weather}.png`)
+    }, [weather])
+
     return (
         <div className={styles.container}>
             <div className={styles.text}>
                 <h3 className={styles.date}>{date}</h3>
                 <div className={styles.details}>
                     <div className={styles.imageContainer}>
-                        <div className={styles.placeholder}></div>
+                        <Image src={icon} height={50} width={50} alt='weather icon' />
                     </div>
                     <div className={styles.weather}>
-                        <p>{weather}</p>
-                        <p>{desc}</p>
+                        <p className={styles.weatherText}>{weather}</p>
+                        <p className={styles.descText}>{desc}</p>
                     </div>
                     <div className={styles.numbers}>
                         <p>Temperature: {temp}°K</p>

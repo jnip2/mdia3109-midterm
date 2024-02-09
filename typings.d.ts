@@ -25,7 +25,9 @@ interface ICurrentDay<T> {
     date: string,
     weather: string,
     temp: string,
-    wind: string
+    wind: string,
+    country: string,
+    state: string
 }
 
 interface IFiveDay {

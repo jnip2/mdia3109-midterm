@@ -10,6 +10,7 @@
 .date {
     font-size: 20px;
     margin-top: 15px;
+    font-family: 'Dekko', sans-serif;
 }
 
 .details {
@@ -31,6 +32,19 @@
     background-color: black;
     width: 100%;
     height: 100%;
+}
+
+.weatherText {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.descText {
+    font-size: 12px;
+}
+
+.numbers>p {
+    font-size: 13px;
 }
 
 
