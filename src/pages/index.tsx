@@ -151,7 +151,7 @@ export default function Home() {
               : error
                 ? <>
                   <div className={styles.messageContainer}>
-                    <p className={styles.message}>Error! Location not found.</p>
+                    <p className={styles.message}>Error! Location not found or connection error.</p>
                   </div>
                 </>
                 : <>
