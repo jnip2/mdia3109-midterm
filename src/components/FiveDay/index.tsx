@@ -12,7 +12,9 @@ export default function FiveDay({
     const [icon, setIcon] = useState('')
 
     useEffect(() => {
-        setIcon(`/weather-icons/${weather}.png`)
+        weather
+            ? setIcon(`/weather-icons/${weather.toLowerCase()}.png`)
+            : setIcon(`/weather-icons/thumbnail.png`)
     }, [weather])
 
     return (
