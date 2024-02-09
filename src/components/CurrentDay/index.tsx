@@ -35,7 +35,7 @@ export default function ICurrentDay<T extends any>({
                             <p className={styles.weather}>{weather}</p>
                             <div className={styles.categoryContainer}>
                                 <p className={styles.categoryHeader}>Temperature</p>
-                                <p>{temp}°C</p>
+                                <p>{temp} °C</p>
                             </div>
                             <div className={styles.categoryContainer}>
                                 <p className={styles.categoryHeader}>Wind speed</p>

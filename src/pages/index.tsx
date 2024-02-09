@@ -10,14 +10,16 @@ export default function Home() {
   const [location, setLocation] = useState<ILocationEntry>()
   const [lat, setLat] = useState<ILat>(0)
   const [lon, setLon] = useState<ILon>(0)
-  const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>()
+  const [currentWeather, setCurrentWeather] = useState<ICurrentWeather<currentData>>()
   const [fiveDay, setFiveDay] = useState<IFiveDay[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(false)
 
   let forecast: Array<IArray> = []
 
-  var key = '99b03e07f642fa17467a4e543bb340a4'
+  type currentData = string | number
+
+  const key = process.env.NEXT_PUBLIC_API
   var getCoordsUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${key}`
   var getCurrentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`
   var getForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`
@@ -115,7 +117,7 @@ export default function Home() {
               <span style={{ fontWeight: 'bold' }}>Enter a city</span>
               <form className={styles.form}>
                 <input
-                  onChange={(e) => setLocation(e.target.value)}
+                  onChange={(e: any) => setLocation(e.target.value)}
                   onKeyDown={e => {
                     if (e.key === 'Enter') e.preventDefault();
                   }}
@@ -157,10 +159,10 @@ export default function Home() {
                     <div className={styles.currentDayContainer}>
                       <CurrentDay
                         location={locationData.name}
-                        date={getDate(fiveDay[0].dt)}
+                        date={getDate((currentWeather as any).dt)}
                         weather={currentWeather.weather[0].main}
-                        temp={(currentWeather.main.temp - 273.15).toFixed(1).toString()}
-                        wind={currentWeather.wind.speed.toString()}
+                        temp={((currentWeather.main as any).temp - 273.15).toFixed(1).toString()}
+                        wind={(currentWeather.wind as any).speed.toString()}
                         country={locationData.country}
                         state={locationData.state}
                       />
