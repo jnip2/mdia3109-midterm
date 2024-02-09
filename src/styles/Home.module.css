@@ -1,0 +1,124 @@
+.main {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+    height: 100vh;
+    background-color: var(--offwhite);
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    justify-content: center;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gap {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.weatherContainerBg {
+    background-color: var(--primary);
+    max-height: 100vh;
+    overflow-y: scroll;
+}
+
+.weatherContainer {
+    margin: 50px;
+}
+
+.currentDayContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    gap: 20px;
+    height: 35px;
+}
+
+.inputBar {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.button {
+    background-color: var(--offwhite);
+    border-radius: 5px;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    width: 50px;
+    padding: 2px;
+    height: 100%;
+}
+
+.button:hover {
+    background-color: var(--primary);
+    border-radius: 5px;
+    color: white;
+    width: 50px;
+    padding: 2px;
+}
+
+.currentDayContainer {
+    margin-bottom: 30px;
+}
+
+.fiveDayHeader {
+    color: var(--offwhite);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.fiveDayContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.eachDayContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.messageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1225px) {
+    .main {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3fr;
+        height: 100vh;
+        background-color: var(--offwhite);
+    }
+
+    .weatherContainerBg {
+        overflow-y: visible;
+        max-height: none;
+    }
+
+    .form {
+        margin-bottom: 25px;
+    }
+}
+
+@media screen and (max-width: 535px) {
+    .weatherContainer {
+        margin: 10px;
+    }
+}

@@ -1,0 +1,58 @@
+.location {
+    font-size: 35px;
+    color: var(--highlight);
+    font-weight: 700;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--offwhite);
+    border-radius: 30px;
+}
+
+.contentContainer {
+    margin: 30px;
+}
+
+.headerContainer {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.imageContainer {
+    width: 156px;
+    height: 140px;
+}
+
+.placeholder {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+}
+
+.detailsContainer {
+    display: flex;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.weather {
+    font-size: 25px;
+}
+
+.categoryContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.categoryHeader {
+    font-size: 12px;
+}
