@@ -16,7 +16,7 @@ export default function ICurrentDay<T extends any>({
 
     useEffect(() => {
         weather
-            ? setIcon(`/weather-icons/${weather}.png`)
+            ? setIcon(`/weather-icons/${weather.toLowerCase()}.png`)
             : setIcon(`/weather-icons/thumbnail.png`)
     }, [weather])
 
