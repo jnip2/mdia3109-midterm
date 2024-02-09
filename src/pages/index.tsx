@@ -20,7 +20,7 @@ export default function Home() {
   type currentData = string | number
 
   const key = process.env.NEXT_PUBLIC_API
-  var getCoordsUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${key}`
+  var getCoordsUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${location}&limit=5&appid=${key}`
   var getCurrentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`
   var getForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`
 
