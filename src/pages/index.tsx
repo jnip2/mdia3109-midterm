@@ -8,12 +8,11 @@ import Head from "next/head";
 export default function Home() {
   const [locationData, setLocationData] = useState<ILocationData>()
   const [location, setLocation] = useState<ILocationEntry>()
-  const [lat, setLat] = useState<ILat>(0)
-  const [lon, setLon] = useState<ILon>(0)
+  const [lat, setLat] = useState<ILat>()
+  const [lon, setLon] = useState<ILon>()
   const [currentWeather, setCurrentWeather] = useState<ICurrentWeather<currentData>>()
   const [fiveDay, setFiveDay] = useState<IFiveDay[]>([])
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(false)
 
   let forecast: Array<IArray> = []
 
@@ -24,11 +23,15 @@ export default function Home() {
   var getCurrentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}`
   var getForecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${key}`
 
-  const GrabCoords = () => {
+
+  useEffect(() => {
+    GrabCurrentWeather()
+  }, [lat])
+
+  const GrabCoords = async () => {
     fetch(getCoordsUrl)
       .then((res) => {
         setLoading(true)
-        setError(false)
         return res.json()
       })
       .then((data) => {
@@ -37,12 +40,8 @@ export default function Home() {
         setLat(data[0].lat)
         setLon(data[0].lon)
       })
-      .then(() => {
-        GrabCurrentWeather()
-      })
       .catch((err) => {
         console.log(err)
-        setError(true)
       })
   }
 
@@ -60,7 +59,6 @@ export default function Home() {
       })
       .catch((err) => {
         console.log(err)
-        setError(true)
       })
   }
 
@@ -83,7 +81,6 @@ export default function Home() {
       })
       .catch((err) => {
         console.log(err)
-        setError(true)
       })
   }
 
@@ -131,7 +128,6 @@ export default function Home() {
                     try { GrabCoords() }
                     catch (err) {
                       console.log(err)
-                      setError(true)
                     }
                   }}
                   type="button"
@@ -148,44 +144,38 @@ export default function Home() {
                   <p className={styles.message}>Loading...</p>
                 </div>
               </>
-              : error
-                ? <>
-                  <div className={styles.messageContainer}>
-                    <p className={styles.message}>Error! Location not found or connection error.</p>
-                  </div>
-                </>
-                : <>
-                  {locationData && currentWeather && fiveDay.length > 0 &&
-                    <div className={styles.currentDayContainer}>
-                      <CurrentDay
-                        location={locationData.name}
-                        date={getDate((currentWeather as any).dt)}
-                        weather={currentWeather.weather[0].main}
-                        temp={((currentWeather.main as any).temp - 273.15).toFixed(1).toString()}
-                        wind={(currentWeather.wind as any).speed.toString()}
-                        country={locationData.country}
-                        state={locationData.state}
-                      />
-                    </div>}
-                  {fiveDay.length > 0 && <h2 className={styles.fiveDayHeader}>Five Day Forecast</h2>
-                  }
-                  <div className={styles.fiveDayContainer}>
-                    {fiveDay && fiveDay.map((i: any, index: any) => {
-                      return (
-                        <div key={index}>
-                          <FiveDay
-                            // date={i.dt_txt}
-                            date={getShortDate(i.dt_txt)}
-                            temp={i.main.temp.toFixed(1)}
-                            weather={i.weather[0].main}
-                            desc={i.weather[0].description}
-                            wind={i.wind.speed}
-                          />
-                        </div>
-                      )
-                    })}
-                  </div>
-                </>}
+              : <>
+                {locationData && currentWeather && fiveDay.length > 0 &&
+                  <div className={styles.currentDayContainer}>
+                    <CurrentDay
+                      location={locationData.name}
+                      date={getDate((currentWeather as any).dt)}
+                      weather={currentWeather.weather[0].main}
+                      temp={((currentWeather.main as any).temp - 273.15).toFixed(1).toString()}
+                      wind={(currentWeather.wind as any).speed.toString()}
+                      country={locationData.country}
+                      state={locationData.state}
+                    />
+                  </div>}
+                {fiveDay.length > 0 && <h2 className={styles.fiveDayHeader}>Five Day Forecast</h2>
+                }
+                <div className={styles.fiveDayContainer}>
+                  {fiveDay && fiveDay.map((i: any, index: any) => {
+                    return (
+                      <div key={index}>
+                        <FiveDay
+                          // date={i.dt_txt}
+                          date={getShortDate(i.dt_txt)}
+                          temp={(i.main.temp - 273.15).toFixed(1)}
+                          weather={i.weather[0].main}
+                          desc={i.weather[0].description}
+                          wind={i.wind.speed}
+                        />
+                      </div>
+                    )
+                  })}
+                </div>
+              </>}
 
           </div>
         </div>

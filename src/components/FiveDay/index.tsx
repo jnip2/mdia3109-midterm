@@ -30,7 +30,7 @@ export default function FiveDay({
                         <p className={styles.descText}>{desc}</p>
                     </div>
                     <div className={styles.numbers}>
-                        <p>Temperature: {temp}°K</p>
+                        <p>Temperature: {temp}°C</p>
                         <p>Wind speed: {wind} m/s</p>
                     </div>
                 </div>
